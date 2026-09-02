@@ -53,8 +53,9 @@ async def create_appointment(input: AppointmentCreate):
 
 
 @api_router.get("/appointments", response_model=List[Appointment])
-async def list_appointments():
-    items = await db.appointments.find({}, {"_id": 0}).to_list(1000)
+async def list_appointments(skip: int = 0, limit: int = 50):
+    limit = min(limit, 100)
+    items = await db.appointments.find({}, {"_id": 0}).sort("created_at", -1).skip(skip).limit(limit).to_list(limit)
     for it in items:
         if isinstance(it.get('created_at'), str):
             it['created_at'] = datetime.fromisoformat(it['created_at'])
