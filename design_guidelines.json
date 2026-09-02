@@ -1,0 +1,269 @@
+{
+  "project_name": "MP Automotive Repair - High-Performance Landing & Service Platform",
+  "app_type": "landing_page",
+  "archetype": "THE PERFORMANCE PRO (Swiss Precision Tactical High-Contrast)",
+  "theme_strategy": {
+    "default_mode": "dark",
+    "toggle_supported": true,
+    "dark_background": "#0B0D10",
+    "dark_surface": "#12161F",
+    "dark_surface_hover": "#1A202C",
+    "light_background": "#F4F3EF",
+    "light_surface": "#FFFFFF",
+    "accent_primary": "#FF3B30",
+    "accent_primary_hover": "#E03126",
+    "accent_secondary": "#38BDF8",
+    "amber_highlight": "#F59E0B",
+    "neutral_light": "#F8FAFC",
+    "neutral_muted": "#94A3B8",
+    "border_dark": "rgba(255, 255, 255, 0.12)",
+    "border_light": "rgba(15, 23, 42, 0.12)"
+  },
+  "typography": {
+    "heading_font": "Outfit, Barlow Condensed, sans-serif",
+    "body_font": "Inter, system-ui, sans-serif",
+    "mono_font": "JetBrains Mono, monospace",
+    "headiness_weights": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-none uppercase",
+      "h2": "text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight uppercase",
+      "h3": "text-xl sm:text-2xl font-bold tracking-normal",
+      "h4": "text-lg sm:text-xl font-semibold",
+      "subtitle": "text-base sm:text-lg text-slate-400 font-normal leading-relaxed",
+      "overline": "text-xs font-mono uppercase tracking-[0.25em] text-red-500 font-bold"
+    }
+  },
+  "layout_and_spacing": {
+    "container_padding": "px-4 sm:px-8 lg:px-16 max-w-7xl mx-auto",
+    "section_spacing": "py-20 sm:py-28 lg:py-32",
+    "bento_grid": "grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8",
+    "card_padding": "p-6 sm:p-8",
+    "radius": "rounded-none sm:rounded-lg",
+    "border_style": "border border-white/10 dark:border-white/10 light:border-slate-200"
+  },
+  "motion_and_interactions": {
+    "library": "framer-motion",
+    "scroll_smoothness": "lenis",
+    "hero_reveal": "Masked line-by-line stagger reveal on initial mount (duration 0.8s, ease cubic-bezier(0.16, 1, 0.3, 1))",
+    "hover_effects": "Subtle border glow transition, 1.02 scale transform on cards, red outline flash on interactive buttons",
+    "micro_interactions": "Tap feedback on appointment submit, date picker hover states, tab category change slide animation"
+  },
+  "visual_enhancers": {
+    "grid_overlay": "Technical subtle grid pattern background using repeating SVG lines",
+    "glow_effects": "Radial ambient red/cyan glow drops behind hero headline and key statistics",
+    "marquee": "Slow kinetic editorial ribbon drifting at 35s loop speed, featuring brand statement and services",
+    "photography_treatment": "Spotlight dark frame overlays with inner 1px high-contrast stroke and badge callouts"
+  },
+  "media_and_images": {
+    "hero_bg": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "engine_bay": "https://images.unsplash.com/photo-1606577924006-27d39b132ae2?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "brake_rotor": "https://images.unsplash.com/photo-1760317890314-e964ffd7e6a6?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "workshop_lift": "https://images.unsplash.com/photo-1702146713858-8e7d1cc29fe8?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "mechanic_tools": "https://images.unsplash.com/photo-1676018366904-c083ed678e60?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "tires_rack": "https://images.unsplash.com/photo-1786489623872-2ebdfe51297c?crop=entropy&cs=srgb&fm=jpg&q=85"
+  },
+  "key_business_info": {
+    "name": "MP Automotive Repair",
+    "phone": "(501) 599-6910",
+    "phone_raw": "5015996910",
+    "address": "8890 Landers Rd, North Little Rock, AR 72117-1508",
+    "google_maps_url": "https://maps.google.com/?q=8890+Landers+Rd,+North+Little+Rock,+AR+72117",
+    "hours": "Mon - Fri: 8:00 AM – 5:00 PM | Sat & Sun: Closed",
+    "rating": "5.0",
+    "review_count": 48,
+    "features": [
+      "Wheelchair Accessible Entrance & Bay",
+      "Credit & Debit Cards Accepted",
+      "Master Certified Technicians",
+      "Full Warranty on Qualifying Repairs"
+    ],
+    "services_list": [
+      {
+        "id": "brakes",
+        "name": "Brakes & Rotors",
+        "category": "Safety System",
+        "description": "Precision pad replacement, rotor resurfacing, caliper servicing, and ABS diagnostic flushing.",
+        "icon": "Disc"
+      },
+      {
+        "id": "tires",
+        "name": "Tires & Alignment",
+        "category": "Maintenance",
+        "description": "Computerized wheel balancing, laser alignment, tire rotation, and tread depth analysis.",
+        "icon": "CircleDot"
+      },
+      {
+        "id": "suspension",
+        "name": "Suspension, Shocks & Struts",
+        "category": "Handling",
+        "description": "Complete shock absorber, strut assembly, bushing, and sway bar link replacement for smooth control.",
+        "icon": "Activity"
+      },
+      {
+        "id": "steering",
+        "name": "Tie Rods & Steering",
+        "category": "Handling",
+        "description": "Inner/outer tie rod replacement, power steering fluid flush, rack & pinion diagnostics.",
+        "icon": "Compass"
+      },
+      {
+        "id": "engine",
+        "name": "Engine Repair & Diagnostics",
+        "category": "Powertrain",
+        "description": "Advanced ECU diagnostic scans, cylinder head work, lifter & camshaft replacements, oil leak resolution.",
+        "icon": "Cpu"
+      },
+      {
+        "id": "transmission",
+        "name": "Transmission Service",
+        "category": "Powertrain",
+        "description": "Automatic & manual fluid flush, clutch assembly servicing, rebuilds, and solenoid replacement.",
+        "icon": "Cog"
+      },
+      {
+        "id": "ac_heating",
+        "name": "Air Conditioning & HVAC",
+        "category": "Climate",
+        "description": "R134a & R1234yf refrigerant leak checks, compressor replacement, condenser cleaning, cabin filter swaps.",
+        "icon": "Wind"
+      },
+      {
+        "id": "battery_electric",
+        "name": "Battery & Electrical",
+        "category": "Electrical",
+        "description": "High-load battery testing, alternator replacement, starter repair, wiring fault isolation.",
+        "icon": "Zap"
+      },
+      {
+        "id": "warranty_work",
+        "name": "Warranty Work",
+        "category": "Specialty",
+        "description": "Direct processing for aftermarket and extended vehicle warranties with official documentation.",
+        "icon": "ShieldCheck"
+      },
+      {
+        "id": "filters_fluids",
+        "name": "Air & Cabin Filter Swaps",
+        "category": "Maintenance",
+        "description": "High-efficiency HEPA cabin filters and engine intake filter replacements for optimal performance.",
+        "icon": "Filter"
+      }
+    ]
+  },
+  "sections_breakdown": [
+    {
+      "section_id": "navbar",
+      "type": "fixed_header",
+      "features": ["Glassmorphism blur bg", "MP Automotive brand logo", "Quick nav links", "Call Now button tel:5015996910", "Book Service CTA Modal button"]
+    },
+    {
+      "section_id": "hero",
+      "type": "kinetic_hero",
+      "features": [
+        "Line-by-line staggered text reveal",
+        "Interactive 3D mechanical canvas backdrop",
+        "Live shop status indicator (OPEN / CLOSED based on current time)",
+        "Tap-to-call direct button with pulse ring",
+        "Directions shortcut link",
+        "Key stats grid (5.0 Star Rating, 100% Honest Pricing, Master Certified)"
+      ]
+    },
+    {
+      "section_id": "marquee",
+      "type": "editorial_ribbon",
+      "features": ["Slow smooth infinite scroll", "Dark high contrast ribbon", "Service keyword badges"]
+    },
+    {
+      "section_id": "manifesto",
+      "type": "numbered_chapters",
+      "features": [
+        "Chapter 01: Precision Diagnostics",
+        "Chapter 02: Transparent Pricing",
+        "Chapter 03: Master Craftsmanship",
+        "Chapter 04: Ironclad Warranty"
+      ]
+    },
+    {
+      "section_id": "services",
+      "type": "interactive_grid",
+      "features": [
+        "Category filter tabs (All, Powertrain, Handling, Maintenance, Climate & Electrical)",
+        "Service detail cards with key features",
+        "Estimate request modal trigger pre-selecting the service",
+        "Spotlight photography card integrations"
+      ]
+    },
+    {
+      "section_id": "appointment_modal",
+      "type": "service_request_form",
+      "features": [
+        "Service selection radio/dropdown",
+        "Preferred date & time picker",
+        "Customer contact info (Name, Phone, Email, Vehicle Year/Make/Model)",
+        "Issue description input",
+        "Instant validation and backend API POST submit (`/api/appointments`) with toast feedback"
+      ]
+    },
+    {
+      "section_id": "reviews",
+      "type": "social_proof",
+      "features": [
+        "5.0 rating hero summary block",
+        "Verified customer review cards with star ratings",
+        "Google review verification badge",
+        "High trust quotes on craftsmanship and quick turnaround"
+      ]
+    },
+    {
+      "section_id": "location_and_hours",
+      "type": "tactical_map_block",
+      "features": [
+        "Interactive hours schedule table highlighting today",
+        "Embedded interactive map card with Google Maps button",
+        "Accessibility & Payment method chips",
+        "Direct call & direction CTAs"
+      ]
+    },
+    {
+      "section_id": "footer",
+      "type": "bold_editorial_footer",
+      "features": [
+        "Massive brand kinetic text",
+        "Quick links & emergency phone badge",
+        "Copyright & local business disclosures"
+      ]
+    }
+  ],
+  "backend_integration": {
+    "endpoints": [
+      {
+        "path": "/api/appointments",
+        "method": "POST",
+        "description": "Saves new appointment request to MongoDB and returns confirmation",
+        "payload": {
+          "client_name": "string",
+          "phone": "string",
+          "email": "string",
+          "service_id": "string",
+          "vehicle_info": "string",
+          "preferred_date": "string",
+          "preferred_time": "string",
+          "notes": "string"
+        }
+      },
+      {
+        "path": "/api/appointments",
+        "method": "GET",
+        "description": "Retrieves appointment list for shop staff/confirmation lookup"
+      }
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Build a single-page marketing landing site for MP Automotive Repair.",
+    "Ensure all data-testid attributes are included on buttons, inputs, links, cards, forms, and modals.",
+    "Implement Lenis smooth scroll and Framer Motion staggered reveals.",
+    "Create an interactive Canvas or R3F/Three.js hero accent element for tactical automotive aesthetic.",
+    "Ensure all phone buttons open `tel:5015996910` and directions link opens Google Maps with full address.",
+    "Implement light and dark mode toggle seamlessly.",
+    "Connect the Online Appointment Service Request form to the FastAPI `/api/appointments` backend and show Sonner toasts on success."
+  ]
+}
