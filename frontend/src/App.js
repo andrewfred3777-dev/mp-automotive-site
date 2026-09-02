@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Lenis from "lenis";
 import { Toaster } from "sonner";
 import Navbar from "@/components/Navbar";
@@ -10,8 +11,10 @@ import Reviews from "@/components/Reviews";
 import LocationHours from "@/components/LocationHours";
 import Footer from "@/components/Footer";
 import AppointmentModal from "@/components/AppointmentModal";
+import AuthCallback from "@/components/AuthCallback";
+import StaffDashboard from "@/components/StaffDashboard";
 
-export default function App() {
+function Landing() {
   const [modalOpen, setModalOpen] = useState(false);
   const [presetService, setPresetService] = useState("");
 
@@ -20,6 +23,41 @@ export default function App() {
     setModalOpen(true);
   };
 
+  return (
+    <>
+      <Navbar onBook={() => openModal()} />
+      <main>
+        <Hero onBook={() => openModal()} />
+        <Marquee />
+        <Manifesto />
+        <Services onBook={openModal} />
+        <Reviews />
+        <LocationHours />
+      </main>
+      <Footer />
+      <AppointmentModal
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+        presetService={presetService}
+      />
+    </>
+  );
+}
+
+function AppRouter() {
+  const location = useLocation();
+  if (location.hash?.includes("session_id=")) {
+    return <AuthCallback />;
+  }
+  return (
+    <Routes>
+      <Route path="/" element={<Landing />} />
+      <Route path="/staff" element={<StaffDashboard />} />
+    </Routes>
+  );
+}
+
+export default function App() {
   useEffect(() => {
     document.documentElement.classList.add("dark");
     const lenis = new Lenis({ lerp: 0.09, smoothWheel: true });
@@ -37,21 +75,9 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-background font-sans text-foreground antialiased">
-      <Navbar onBook={() => openModal()} />
-      <main>
-        <Hero onBook={() => openModal()} />
-        <Marquee />
-        <Manifesto />
-        <Services onBook={openModal} />
-        <Reviews />
-        <LocationHours />
-      </main>
-      <Footer />
-      <AppointmentModal
-        open={modalOpen}
-        onClose={() => setModalOpen(false)}
-        presetService={presetService}
-      />
+      <BrowserRouter>
+        <AppRouter />
+      </BrowserRouter>
       <Toaster position="top-center" richColors theme="dark" />
     </div>
   );

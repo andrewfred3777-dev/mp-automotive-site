@@ -14,6 +14,9 @@ Single-page marketing site for MP Automotive Repair (North Little Rock, AR). Ser
 - Shop staff reading appointment requests (GET /api/appointments).
 
 ## Implemented (2026-09-02)
+- Emergent-managed Google sign-in: session exchange endpoint, httpOnly cookie sessions (7-day), /api/auth/me, logout
+- Protected staff dashboard at /staff: appointments table (customer, service, vehicle, slot, notes), refresh, logout; GET /api/appointments now requires auth (POST stays public for bookings)
+- Appointments list pagination (skip/limit, newest first)
 - Kinetic hero with masked line-by-line reveal, canvas ring animation, parallax photo bg, live OPEN/CLOSED pill, stats grid
 - Red editorial marquee ribbon with all services
 - Numbered manifesto chapters (01–04)
@@ -25,9 +28,10 @@ Single-page marketing site for MP Automotive Repair (North Little Rock, AR). Ser
 - Dark/light theme toggle
 
 ## Backlog
-- P1: Admin/staff view for appointment requests (protected)
 - P1: Email/SMS notification to shop on new request (Resend/Twilio)
+- P1: Restrict staff sign-in to an allowlist of shop Google accounts
 - P2: Real embedded Google Map iframe
+- P2: Appointment status management (confirm/complete) in staff dashboard
 - P2: Gallery of shop photos, FAQ section, SEO meta/schema.org LocalBusiness
 
 ## Next Tasks
