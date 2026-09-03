@@ -1,63 +1,47 @@
-# Auth Testing Playbook (Emergent Google Auth)
+# Auth Testing Playbook (Password Staff Login)
 
-Step 1: Create Test User & Session
+Staff login is a single shared account seeded from backend env vars `ADMIN_EMAIL` / `ADMIN_PASSWORD` at backend startup. Sessions are JWT access (15 min, httpOnly cookie `access_token`) + refresh (7 days, httpOnly cookie `refresh_token`).
+
+Step 1: MongoDB Verification
 ```bash
 mongosh --eval "
 use('test_database');
-var userId = 'test-user-' + Date.now();
-var sessionToken = 'test_session_' + Date.now();
-db.users.insertOne({
-  user_id: userId,
-  email: 'test.user.' + Date.now() + '@example.com',
-  name: 'Test User',
-  picture: 'https://via.placeholder.com/150',
-  created_at: new Date()
-});
-db.user_sessions.insertOne({
-  user_id: userId,
-  session_token: sessionToken,
-  expires_at: new Date(Date.now() + 7*24*60*60*1000),
-  created_at: new Date()
-});
-print('Session token: ' + sessionToken);
-print('User ID: ' + userId);
+db.users.find({role: 'staff'}).pretty();
 "
 ```
+Verify: user exists with the admin email, `password_hash` starts with `$2b$`.
 
-Step 2: Test Backend API
+Step 2: API Testing
 ```bash
-curl -X GET "$API/api/auth/me" -H "Authorization: Bearer YOUR_SESSION_TOKEN"
-curl -X GET "$API/api/appointments" -H "Authorization: Bearer YOUR_SESSION_TOKEN"
+API=$(grep REACT_APP_BACKEND_URL /app/frontend/.env | cut -d '=' -f2)
+
+# Login (expect user JSON + Set-Cookie headers)
+curl -c /tmp/cookies.txt -X POST "$API/api/auth/login" \
+  -H "Content-Type: application/json" \
+  -d '{"email":"ADMIN_EMAIL_HERE","password":"ADMIN_PASSWORD_HERE"}'
+
+# Authenticated requests with cookies
+curl -b /tmp/cookies.txt "$API/api/auth/me"
+curl -b /tmp/cookies.txt "$API/api/appointments"
+
+# Wrong password (expect 401 "Invalid email or password")
+curl -X POST "$API/api/auth/login" -H "Content-Type: application/json" \
+  -d '{"email":"ADMIN_EMAIL_HERE","password":"wrong"}'
+
+# 5 wrong attempts = 15-min lockout (expect 429)
+
+# No auth (expect 401)
+curl "$API/api/appointments"
+
+# Logout
+curl -b /tmp/cookies.txt -c /tmp/cookies.txt -X POST "$API/api/auth/logout"
 ```
 
 Step 3: Browser Testing
-```javascript
-await page.context.add_cookies([{
-    "name": "session_token",
-    "value": "YOUR_SESSION_TOKEN",
-    "domain": "your-app.com",
-    "path": "/",
-    "httpOnly": true,
-    "secure": true,
-    "sameSite": "None"
-}]);
-await page.goto("https://your-app.com/staff");
-```
+1. Go to `/staff` logged out → password login form appears
+2. Log in with staff credentials → dashboard with appointments table appears
+3. Reload the page → still logged in (cookie persists)
+4. Click Logout → back to landing page; `/staff` shows login form again
 
-Quick Debug
-```bash
-mongosh --eval "use('test_database'); db.users.find().limit(2).pretty(); db.user_sessions.find().limit(2).pretty();"
-# Clean test data
-mongosh --eval "use('test_database'); db.users.deleteMany({email: /test\.user\./}); db.user_sessions.deleteMany({session_token: /test_session/});"
-```
-
-Checklist
-- User document has user_id field (custom UUID)
-- Session user_id matches user's user_id exactly
-- All queries use {"_id": 0} projection
-- API returns user data with user_id field (not 401/404)
-- /staff loads dashboard when authenticated, sign-in prompt when not
-- Callback detection uses useLocation().hash
-
-Success: /api/auth/me returns user data; staff dashboard loads; appointments list visible.
-Failure: 401 responses; stuck callback; redirect loops.
+Success: login returns user JSON, /api/auth/me works with cookie, dashboard lists appointments.
+Failure: 401 after login, missing Set-Cookie, dashboard stuck on "Checking access…".

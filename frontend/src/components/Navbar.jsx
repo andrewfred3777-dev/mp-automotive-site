@@ -1,7 +1,7 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Phone, CalendarCheck, Sun, Moon, UserRound } from "lucide-react";
 import { BUSINESS } from "@/data";
-import { signInWithGoogle } from "@/components/StaffDashboard";
 
 const scrollTo = (id) =>
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -53,15 +53,15 @@ export default function Navbar({ onBook }) {
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-3">
-          <button
+          <Link
             data-testid="staff-sign-in-btn"
-            onClick={signInWithGoogle}
+            to="/staff"
             aria-label="Staff sign in"
             title="Staff sign in"
             className="flex h-9 w-9 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary"
           >
             <UserRound className="h-4 w-4" />
-          </button>
+          </Link>
           <button
             data-testid="theme-toggle-btn"
             onClick={toggleTheme}

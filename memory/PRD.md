@@ -13,9 +13,12 @@ Single-page marketing site for MP Automotive Repair (North Little Rock, AR). Ser
 - Customer booking a specific service online.
 - Shop staff reading appointment requests (GET /api/appointments).
 
+## Implemented (2026-09-03 update)
+- Replaced Emergent-managed Google sign-in with portable password staff login (JWT access + refresh cookies, bcrypt hash, brute-force lockout 5 attempts/15 min, seeded from ADMIN_EMAIL/ADMIN_PASSWORD env) — app is now fully hostable anywhere
+- Handoff README.md at repo root: plain-English deploy guide (MongoDB Atlas, Railway/Render, Vercel/Netlify), env var reference, handoff checklist
+
 ## Implemented (2026-09-02)
-- Emergent-managed Google sign-in: session exchange endpoint, httpOnly cookie sessions (7-day), /api/auth/me, logout
-- Protected staff dashboard at /staff: appointments table (customer, service, vehicle, slot, notes), refresh, logout; GET /api/appointments now requires auth (POST stays public for bookings)
+- Staff dashboard at /staff: appointments table (customer, service, vehicle, slot, notes), refresh, logout; GET /api/appointments requires auth (POST stays public for bookings)
 - Appointments list pagination (skip/limit, newest first)
 - Kinetic hero with masked line-by-line reveal, canvas ring animation, parallax photo bg, live OPEN/CLOSED pill, stats grid
 - Red editorial marquee ribbon with all services

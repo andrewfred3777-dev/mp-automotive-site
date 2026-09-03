@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Lenis from "lenis";
 import { Toaster } from "sonner";
 import Navbar from "@/components/Navbar";
@@ -11,7 +11,6 @@ import Reviews from "@/components/Reviews";
 import LocationHours from "@/components/LocationHours";
 import Footer from "@/components/Footer";
 import AppointmentModal from "@/components/AppointmentModal";
-import AuthCallback from "@/components/AuthCallback";
 import StaffDashboard from "@/components/StaffDashboard";
 
 function Landing() {
@@ -45,10 +44,6 @@ function Landing() {
 }
 
 function AppRouter() {
-  const location = useLocation();
-  if (location.hash?.includes("session_id=")) {
-    return <AuthCallback />;
-  }
   return (
     <Routes>
       <Route path="/" element={<Landing />} />
